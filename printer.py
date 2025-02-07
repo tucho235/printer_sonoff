@@ -60,7 +60,7 @@ def check_and_turn_off() -> None:
                     if last_print_time > (current_time - 60):  # 60 seconds = 1 minute
                         should_turn_off = False
     except IOError as e:
-        print(f"Error reading init print file: {e}")
+        print(f"Error reading lock print file: {e}")
         should_turn_off = False
 
     # Check for pending print jobs
@@ -76,11 +76,11 @@ def check_and_turn_off() -> None:
         response, status_code = make_printer_request("switch", {"switch": "off"})
         
         if status_code == 200 and response.get('error') == 0:
+            print("Printer turned off successfully")
             try:
                 os.remove(LOCK_FILE)
-                print("Printer turned off successfully")
             except OSError as e:
-                print(f"Error removing init print file: {e}")
+                print(f"Error removing lock print file: {e}")
         else:
             print(f"Failed to turn off printer. Status: {status_code}, Error: {response.get('error')}")
     else: 
