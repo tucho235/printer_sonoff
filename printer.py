@@ -83,6 +83,8 @@ def check_and_turn_off() -> None:
                 print(f"Error removing init print file: {e}")
         else:
             print(f"Failed to turn off printer. Status: {status_code}, Error: {response.get('error')}")
+    else: 
+        print(f"Printer can't be turned off yet")
 
 def write_timestamp_file(filename: str) -> None:
     """Write current timestamp to file."""
