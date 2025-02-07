@@ -48,6 +48,7 @@ def check_and_turn_off() -> None:
     current_time = get_current_timestamp()
     should_turn_off = True
     print(f"{get_formatted_datetime()} ###########################################")
+    print(f"Checking Printer Status and turn it off if conditions are meet")
 
     # Check if init print file exists and is recent
     try:
